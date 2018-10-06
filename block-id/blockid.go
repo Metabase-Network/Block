@@ -29,6 +29,22 @@ type id struct {
 
 var errInvalidBlockID = errors.New("invalid BlockID")
 
-func genBlockID(id string) id {
-	return ID{}
+func genBlockID(bid string) id {
+	  var e,_ =new(big.Int).SetString(bid[0:4], 10)
+  	  var c, _=new(big.Int).SetString(bid[4:68], 10)
+ 	  var b,_=new(big.Int).SetString(bid[68:132], 10)
+ 	  return id{epochID:*e, chainID:*c, blockNo:*b}
+}
+func Validate(bid string) bool{
+
+  	 var ID id
+ 	 ID=GenBlockID(bid)//store blockid in struct
+ 	 //validation
+ 	 i:=big.NewInt(2)
+ 	 i.Exp(i,&ID.epochID,nil)
+ 	 if ID.chainID.Cmp(i)<1{
+   	 return true
+ }
+  return false
+}
 }
