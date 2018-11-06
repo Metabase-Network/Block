@@ -16,7 +16,7 @@
 
 package blockid
 
-type Bid struct {
+type Blockid struct {
 	ENo   []byte
 	CNo   []byte
 	BNo   []byte

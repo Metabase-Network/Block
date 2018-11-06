@@ -17,15 +17,9 @@
 package blockState
 
 import (
-	"math/big"
+	"github.com/Metabase-Network/Block/blockid"
 )
 
-type EpochNo big.Int
-type ChainNo big.Int
-type BlockNo big.Int
-
-type Block struct {
-	ENo EpochNo
-	Cno ChainNo
-	Bno BlockNo
+type BlockHeader struct {
+	BId blockid.Blockid
 }
