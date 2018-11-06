@@ -21,5 +21,5 @@ import (
 )
 
 type BlockBody struct {
-	BId blockid.Blockid
+	blockid blockid.BlockID
 }
