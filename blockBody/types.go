@@ -16,16 +16,7 @@
 
 package blockBody
 
-import (
-	"math/big"
-)
-
-type EpochNo big.Int
-type ChainNo big.Int
-type BlockNo big.Int
-
-type Block struct {
-	ENo EpochNo
-	Cno ChainNo
-	Bno BlockNo
+type BlockBody struct {
+	blockid Bid
+	Bno     BlockNo
 }

@@ -16,6 +16,14 @@
 
 package blockid
 
+type BidString struct {
+	Bid string
+}
+
+type BidBytes struct {
+	Bid []byte
+}
+
 type Bid struct {
 	ENo   []byte
 	CNo   []byte

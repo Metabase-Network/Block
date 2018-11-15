@@ -21,18 +21,41 @@ import (
 	"math/big"
 )
 
-func BlockID(blockID string) (b Bid) {
+func setBidString(b string) BidString {
+	return BidString{Bid: b}
+}
+
+func setBidByte(b []byte) BidBytes {
+	return BidBytes{Bid: b}
+}
+
+func (BidString) setBlockID(blockID string) (b Bid) {
 	bid, err := hex.DecodeString(blockID)
 	if isValidsize(bid) && (err == nil) {
 		if isValidchainID(bid[0:1], bid[1:33]) {
-			b := Bid{ENo: bid[0:1], CNo: bid[1:33], BNo: bid[34:66], state: true, raw: blockID}
+			b := Bid{ENo: bid[0:1], CNo: bid[1:33], BNo: bid[34:66], state: true}
 			return b
 		} else {
-			b := Bid{ENo: []byte("00"), CNo: []byte("00"), BNo: []byte("00"), state: false, raw: blockID}
+			b := Bid{ENo: []byte("00"), CNo: []byte("00"), BNo: []byte("00"), state: false}
 			return b
 		}
 	} else {
-		b := Bid{ENo: []byte("00"), CNo: []byte("00"), BNo: []byte("00"), state: false, raw: blockID}
+		b := Bid{ENo: []byte("00"), CNo: []byte("00"), BNo: []byte("00"), state: false}
+		return b
+	}
+}
+
+func (BidBytes) setBlockID(bid []byte) (b Bid) {
+	if isValidsize(bid) {
+		if isValidchainID(bid[0:1], bid[1:33]) {
+			b := Bid{ENo: bid[0:1], CNo: bid[1:33], BNo: bid[34:66], state: true}
+			return b
+		} else {
+			b := Bid{ENo: []byte("00"), CNo: []byte("00"), BNo: []byte("00"), state: false}
+			return b
+		}
+	} else {
+		b := Bid{ENo: []byte("00"), CNo: []byte("00"), BNo: []byte("00"), state: false}
 		return b
 	}
 }
@@ -68,4 +91,8 @@ func (b Bid) FetchChainNo() *big.Int {
 
 func (b Bid) FetchEpochNo() *big.Int {
 	return new(big.Int).SetBytes(b.ENo)
+}
+
+func (b Bid) FetchBlockNo() *big.Int {
+	return new(big.Int).SetBytes(b.BNo)
 }
