@@ -14,12 +14,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
-package blockHeaders
+package blockHeader
 
 import (
 	"github.com/Metabase-Network/Block/blockid"
+	"github.com/Metabase-Network/vasuki/common"
 )
 
 type BlockHeader struct {
-	BId blockid.Blockid
+	blockid        blockid.Bid
+	blockHash      common.Hash
+	nonce          []byte
+	blockBodyHash  common.Hash
+	blockStateHash common.Hash
+	PoWHash        common.Hash
+	POSHash        common.Hash
+	TxrefArray     []txRef
+	blockCapacity  byte
+}
+
+type txRef struct {
+	txHash   common.Hash
+	txSender common.Address
 }

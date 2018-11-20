@@ -14,19 +14,4 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
-package blockBody
-
-import (
-	"github.com/Metabase-Network/Block/blockid"
-	"github.com/Metabase-Network/vasuki/common"
-)
-
-type BlockBody struct {
-	blockid       blockid.Bid
-	blockHash     common.Hash
-	blockBodyHash common.Hash
-	tx            txArray
-}
-type txArray struct {
-	tx []common.Hash
-}
+package Transactions

@@ -17,9 +17,19 @@
 package blockState
 
 import (
+	"math/big"
+
 	"github.com/Metabase-Network/Block/blockid"
+	"github.com/Metabase-Network/vasuki/common"
 )
 
-type BlockHeader struct {
-	BId blockid.Blockid
+type BlockBody struct {
+	blockid        blockid.Bid
+	blockHash      common.Hash
+	blockStateHash common.Hash
+	txState        txArray
+}
+type txArray struct {
+	address []common.Address
+	state   []big.Int
 }
